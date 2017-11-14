@@ -13,7 +13,7 @@ let empty = Null;;
 (* sprawdzenie czy drzewo a jest puste *)
 
 let is_empty a = 
-  if(a = Null) 
+  if( a = Null ) 
   then true 
   else false;;
 
@@ -27,7 +27,7 @@ exception Empty;;
 let wys a =
   match a with
     | Null -> -1
-    | Node(_, _, h, _) -> h;;
+    | Node(_,_,h,_) -> h;;
 
 (* join laczacy 2 drzewa *)
 
@@ -38,14 +38,17 @@ let rec join q1 q2=
     | (Null, q2) -> q2
     | (q1, Null) -> q1
     (* zamienienie drzew miejscami gdy priorytet sie nie zgadza *)
-    | (Node (_, v1, _, _), Node (_, v2, _, _)) when v2 < v1-> join q2 q1
+    | (Node (_,v1,_,_), Node (_,v2,_,_)) when v2 < v1-> join q2 q1
     (* wlasciwe polaczenie jednego wezla i jakiegos drzewa
        ten przypadek korzysta z funkcji wys, gdyz tak 
        najlatwiej bylo sie dostac do wysokosci lewego poddrzewa*)
-    | (Node(left_v1, v1, _,right_v1), q2) ->
-        if ( wys left_v1 <= wys ( join right_v1 q2) ) 
-        then Node (( join right_v1 q2) , v1, wys left_v1 + 1, left_v1)
-        else Node (left_v1, v1, wys (join right_v1 q2) + 1, (join right_v1 q2));;
+    | (Node(left_v1,v1,_,right_v1), q2) ->
+        let tree_joined = join right_v1 q2
+        in let height_tree_joined = wys (tree_joined)
+        in 
+          if ( wys left_v1 <= height_tree_joined ) 
+          then Node (tree_joined , v1, wys left_v1 + 1, left_v1)
+          else Node (left_v1 , v1, height_tree_joined + 1, tree_joined);;
 
 (* Add dodaje element do drzewa 
    tworzac jednoelementowe drzewo i
@@ -59,4 +62,11 @@ let add a b =
 let delete_min a =
   match a with
     | Null -> raise Empty
-    | Node(left, w, h, right) -> (w, join left right);;
+    | Node(left,w,h,right) -> (w, join left right);;
+
+
+
+
+
+
+
