@@ -37,14 +37,12 @@ let odbity (x,y) (x1,y1) (x2,y2) =
 let zloz ((x1,y1):point) ((x2,y2):point) (k1:kartka) = 
   let det_spec = det x1 y1 x2 y2 
   in let pom (x,y) = 
-    if det_spec x y < 0. then 0
-    else if det_spec x y = 0. then k1 (x,y)
-    else k1 (x,y) + k1 (odbity (x,y) (x1,y1) (x2,y2))
+    let det_spec_xy = det_spec x y
+    in
+      if det_spec_xy < 0. then 0
+      else if det_spec_xy = 0. then k1 (x,y)
+      else k1 (x,y) + k1 (odbity (x,y) (x1,y1) (x2,y2))
   in (pom:kartka);;
-
-
-
-odbity (5.,2.) (-1.,-1.) (1.,1.);;
 
 let skladaj (l:((point * point) list)) (k1:kartka) =
   let pom (x:kartka) (((x1,y1):point),((x2,y2):point)) = 
