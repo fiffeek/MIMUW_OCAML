@@ -27,7 +27,7 @@ let prostokat ((x1, y1):point) ((x2, y2):point) =
 
 (* [kolko p r] zwraca kartkę, reprezentującą 
    kółko domknięte o środku w punkcie [p] i promieniu [r] *)
-let kolko ((x1, y1):point) r=
+let kolko ((x1, y1):point) r =
   let pom (x,y) =
     if (x -. x1) *. (x -. x1) +. (y -. y1) *. (y -. y1) > r *. r
     then 0 else 1
