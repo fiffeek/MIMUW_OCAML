@@ -22,7 +22,7 @@ let topol l =
   else
     (* making a graph [not necessary on integers but
        we can make graphs of string etc too *)
-    let graph = ref (List.fold_left (fun acc (h1,h2) -> PMap.add h1 h2 acc) PMap.empty l) in
+    let graph = ref (List.fold_left (fun acc (h1,_) -> PMap.add h1 [] acc) PMap.empty l) in
       begin
         graph := (List.fold_left (fun acc (h1,h2) -> PMap.add h1 (h2@(PMap.find h1 acc)) acc) !graph l)
       end;
