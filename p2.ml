@@ -47,9 +47,9 @@ let przelewanka tab =
     let answer = ref (-1) in
       (* optimalisation for finish state = [0;0;0...] *)
       if finish_state = acc_table then 0
-        (* optimalisation for the case when :
-        1) gcd_maxes <> gcd_all then we can not find an answer
-        2) number 0 does not exist in the finish state array and there is no number (x,y) in the [tab] array
+      (* optimalisation for the case when :
+         1) gcd_maxes <> gcd_all then we can not find an answer
+         2) number 0 does not exist in the finish state array and there is no number (x,y) in the [tab] array
          that x = y *)
       else if (is_empty = false && is_full = false) || (gcd_all <> gcd_maxes) then !answer
       else
@@ -95,3 +95,10 @@ let przelewanka tab =
           (* returning the answer *)
           !answer;
         end;;
+
+(* some testing *)
+assert (przelewanka [||] = 0);;
+assert (przelewanka [| (10,9); (1,0) |] = 3);;
+assert (przelewanka [| (14,6); (0,0); (14,0) |] = (-1));;
+assert (przelewanka [| (0,0); (1,0); (1,0); (1,1); (2,2); (0,0); (0,0); (1,0); (1,1); (1,1); (0,0) |] = 4);;
+assert (przelewanka [| (0,0); (0,0); (2,0); (1,1); (0,0); (0,0); (0,0); (0,0); (1,1); (0,0); (0,0); (0,0); (1,0); (1,1); (0,0); (0,0); (0,0); (2,2) |] = 4);;
