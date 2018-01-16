@@ -1,6 +1,6 @@
 (* przelewanka.ml *)
 (* Filip Mikina *)
-(* Review : *)
+(* Review : Rychlicki Mateusz *)
 
 (* some libraries *)
 
@@ -105,8 +105,9 @@ let przelewanka tab_in =
             end;;
 
 (* some testing *)
+(*
 assert (przelewanka [||] = 0);;
 assert (przelewanka [| (10,9); (1,0) |] = 3);;
 assert (przelewanka [| (14,6); (0,0); (14,0) |] = (-1));;
 assert (przelewanka [| (0,0); (1,0); (1,0); (1,1); (2,2); (0,0); (0,0); (1,0); (1,1); (1,1); (0,0) |] = 4);;
-assert (przelewanka [| (0,0); (0,0); (2,0); (1,1); (0,0); (0,0); (0,0); (0,0); (1,1); (0,0); (0,0); (0,0); (1,0); (1,1); (0,0); (0,0); (0,0); (2,2) |] = 4);;
+assert (przelewanka [| (0,0); (0,0); (2,0); (1,1); (0,0); (0,0); (0,0); (0,0); (1,1); (0,0); (0,0); (0,0); (1,0); (1,1); (0,0); (0,0); (0,0); (2,2) |] = 4);;*)
