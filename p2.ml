@@ -6,6 +6,7 @@
 
 open Array;;
 open Queue;;
+open List;;
 
 (* gcd [n] [m] returns gcd n and m
    time complexity : O( log (n+m) 
@@ -17,10 +18,14 @@ let rec gcd a b =
 
 (* val przelewanka : (int * int) array -> int *)
 
-let przelewanka tab =
+let przelewanka tab_in =
   (* ifing the empty array *)
-  if tab = [||] then 0
+  if tab_in = [||] then 0
   else
+    (* making a list of an array to filter zeros *)
+    let tab_list = List.filter (fun (x,_) -> x <> 0) (Array.to_list tab_in) in
+    (* going back to an array *)
+    let tab = Array.of_list tab_list in
     let n = Array.length tab in
     let acc_table = Array.make n 0 in
     let max_table = Array.init n (fun x -> fst tab.(x)) in 
